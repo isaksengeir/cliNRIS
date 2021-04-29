@@ -5,10 +5,12 @@ Run <code>install.sh</code> for setting up python3 virtual environment with depe
 
 RT_support contains a small collection of simple command line interfaces (CLI's):
 <ul>
-  <li>make_roster.py</li> for automatic generation of a roster (from a list of staff) over a given period of time
-  <li> <code>print_events.py</code> </li>
-  <li> </li>
-  
+  <li><code>make_roster.py</code> for automatic generation of a roster from a list of staff (.csv) over a given period of time. This CLI does not require Google services as do the following.</li>
+  <li><code>add_shift.py</code> to add RT support staff to a given week shift, or several from a pre-created roster file</li>
+  <li><code>swap_shifts.py</code> to swap RT support staff between two existing shifts/events. </li>
+  <li><code>respond_event.py</code> for responding to an event invitation, or changing the respons status.</li>
+  <li><code>delete_event.py</code> to remove/delete an existing event.</li>
+  <li><code>print_events.py</code> </li> to print out calendar events a given time ahead.   
 </ul>
 
 
