@@ -14,6 +14,7 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
 </ul>
 
 <strong> Using the calendar CLI's</strong>
+
 In order to use the calendar CLI's, you need to create a new  <a href=https://developers.google.com/workspace/guides/create-project>Google Cloud Platform (GCP) project</a>
 
 
