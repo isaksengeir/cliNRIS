@@ -15,7 +15,7 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
 
 <strong> Using the calendar CLI's</strong>
 
-In order to use the calendar CLI's, you need to create a new  <a href=https://developers.google.com/workspace/guides/create-project>Google Cloud Platform (GCP) project</a>
+In order to use the calendar CLI's, you need to be added to the existing RT rost UiT API workspace by sending a request to geir.isaksen@metacenter.no. Creation of a new Google Cloud Platform (GCP) project and enabling the workspace API is explained in more detail here <a href=https://developers.google.com/workspace/guides/create-project> here</a>. The latter one is not preferred since there only exists a limited number of workspaces allowed to be created under Metacenter.
 
 
 Enable a Google Workspace API
