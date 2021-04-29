@@ -1,6 +1,7 @@
 # RT_support
 
 <strong>Tools for Metacenter.no RT Support roster and Google calendar management</strong>
+
 Run <code>install.sh</code> for setting up python3 virtual environment with dependencies given in <code>requirements.txt</code>.
 
 RT_support contains a small collection of simple command line interfaces (CLI's):
