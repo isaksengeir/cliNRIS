@@ -10,9 +10,9 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
   <li><code>swap_shifts.py</code> to swap RT support staff between two existing shifts/events. </li>
   <li><code>respond_event.py</code> for responding to an event invitation, or changing the respons status.</li>
   <li><code>delete_event.py</code> to remove/delete an existing event.</li>
-  <li><code>print_events.py</code> </li> to print out calendar events a given time ahead.   
+  <li><code>print_events.py</code> to print out calendar events a given time ahead.</li>    
 </ul>
 
-
+<bold> Using the calendar CLI's</bold>
 
 
