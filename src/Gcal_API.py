@@ -217,9 +217,34 @@ class MyCalendar(GoogleCalendarService):
             print(f"Could not find attendee {attendee} in event ID {event_id}")
             return
 
-        event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=event).execute()
+        event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=event,
+                                                      sendUpdates="all").execute()
         print(f"\nEvent {event_id} updated {event_updated['updated']}")
         print(cf.blue(f"{attendee} status set to: {response}\n"))
+
+    def remind_event(self, event_id):
+        """
+        Send email notification to attendee(s) in event ID
+        :param event_id:
+        """
+        event = self.get_event(event_id).copy()
+        event_starts = datetime.strptime((event["start"]["date"]), '%Y-%m-%d').date()
+        today = datetime.today().date()
+        print(event_starts)
+        print(today)
+
+        days = (event_starts - today).days - 1
+        minutes = (days * 24 * 60) + ((23 - datetime.now().hour)*60) + (59 - datetime.now().minute)
+
+        event['reminders'] = {
+            'useDefault': False,
+             'overrides': [
+                {'method': 'email', 'minutes': minutes},
+                {'method': 'popup', 'minutes': 10},
+             ],
+        }
+        self.update_event(body=event, event_id=event_id)
+        print(f"Email reminder sent to {', '.join(event['attendees']['email'])}.")
 
     def update_event(self, body, event_id):
         event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=body,
