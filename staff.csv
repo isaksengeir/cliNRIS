@@ -1,0 +1,5 @@
+#Name,                  #email,                #Frequency, #Ukevakt,   #Shared
+Staff Name,     staff.someone@institution.no,    1.0,        True,       False
+Other Who,           other.who@metacenter.no,    0.5,        False,	     True
+Also Sharing,          also.sharing@metacenter.no,    0.5,        False,       True
+

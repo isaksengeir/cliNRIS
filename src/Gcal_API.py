@@ -111,6 +111,8 @@ class MyCalendar(GoogleCalendarService):
         super(MyCalendar, self).__init__(scopes=scopes, credentialsfile=credentialsfile, token=token)
 
         self.id = calendar_id
+        self.cal_name = self.current_calendar
+
         # future events in myCalendar to print out:
         self.maxResults = 999
 
@@ -128,13 +130,22 @@ class MyCalendar(GoogleCalendarService):
         if calendar_name:
             try:
                 self.id = self.calendar_ids[calendar_name]
+                self.cal_name = calendar_name
             except KeyError:
                 print(f"Found no calendar named {calendar_name}")
                 return
         elif calendar_id:
             self.id = calendar_id
+            self.cal_name = self.current_calendar
 
         print(f"Swapped to calender ID {self.id}")
+
+    @property
+    def current_calendar(self):
+        for name in self.calendar_ids.keys():
+            if self.calendar_ids[name] == self.id:
+                return name
+        return None
 
     @property
     def get_future_events(self):

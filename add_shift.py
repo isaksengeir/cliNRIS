@@ -19,11 +19,24 @@ names = None
 emails = None
 
 
-def add_shifts_from_file(roster, cal):
+def add_shifts_from_file(roster, cal, institution, year):
 
     print(f"TODO: adding from file {roster}")
     title, header, table = read_roster_csv(roster)
-    push_roster = verify_calendar_push(title, header, table, cal)
+    if title:
+        institution = title.split()[0]
+        year = title.split()[-1]
+
+    if verify_calendar_push(title, header.copy(), table.copy(), cal):
+        for i in range(len(table)):
+            shift = list(table[i])
+            week = shift[0]
+            names = shift[3].split("/")
+            emails = shift[5].split("/")
+
+            cal.add_shift(week=week, names=names, emails=emails, institution=institution, ukevakt=ukevakt, year=year)
+    else:
+        return
 
 
 def verify_calendar_push(title, header, table, cal):
@@ -32,7 +45,7 @@ def verify_calendar_push(title, header, table, cal):
     header = map(cf.blue, header)
     table = colorize_table(table)
     print(tabulate(table, header, tablefmt="pretty", stralign="left"))
-    push_events = input(cf.red(f"\n-----> Add entire roster to {cal}? (y/n): "))
+    push_events = input(cf.red(f"\n-----> Add entire roster to {cal.current_calendar}? (y/n): "))
 
     if push_events == "y":
         return True
@@ -89,7 +102,7 @@ def main(week, names, file_roster, emails, cal, year, institution, ukevakt):
     ####
 
     if file_roster:
-        add_shifts_from_file(file_roster, cal)
+        add_shifts_from_file(file_roster, rt_cal, institution, year)
         return
 
     add_shift = "y"

@@ -168,7 +168,7 @@ def print_rost(rost, year, csv=False):
     cf.update_palette({"orange": "#ff5733"})
 
     table = list()
-    header = ["Week", "From", "To", "Who", "Ukevakt"]
+    header = ["Week", "From", "To", "Who", "Ukevakt", "email"]
     if csv:
         header_w = header.copy()
         table_w = list()
@@ -176,17 +176,18 @@ def print_rost(rost, year, csv=False):
 
     for w in sorted(rost.keys()):
         d1, d2 = week_to_date(year, w)
-        who = "/".join(rost[w]["who"][:])
+        who = '/'.join(rost[w]["who"][:])
+        email = '/'.join(rost[w]["email"][:])
 
         if rost[w]["ukevakt"]:
-            table.append(map(cf.orange, [str(w), str(d1), str(d2), who, "X"]))
+            table.append(map(cf.orange, [str(w), str(d1), str(d2), who, "X", email]))
             if csv:
-                table_w.append([str(w), str(d1), str(d2), who, "X"])
+                table_w.append([str(w), str(d1), str(d2), who, "X", email])
 
         else:
-            table.append(map(cf.green, [str(w), str(d1), str(d2), who, " "]))
+            table.append(map(cf.green, [str(w), str(d1), str(d2), who, " ", email]))
             if csv:
-                table_w.append([str(w), str(d1), str(d2), who, " "])
+                table_w.append([str(w), str(d1), str(d2), who, " ", email])
 
     title = f"UiT RT SUPPORT weeks {min(rost.keys())} - {max(rost.keys())} {year}"
     print(cf.red(title))
@@ -274,6 +275,7 @@ def populate_rost(from_week, to_week, seed, ukevakt, staff):
     for week in range(from_week, to_week + 1):
         rost[week] = dict()
         rost[week]["who"] = list()
+        rost[week]["email"] = list()
         rost[week]["ukevakt"] = False
         if week in ukevakt:
             rost[week]["ukevakt"] = True
@@ -294,6 +296,7 @@ def populate_rost(from_week, to_week, seed, ukevakt, staff):
             who = find_next_shift(staff_avail, staff_shifts, staff, rost[week]["ukevakt"])
 
         rost[week]["who"].append(who)
+        rost[week]["email"].append(staff[who]["email"])
         shift.append(who)
         staff_avail.remove(who)
         this_weeks_staff.append(who)
@@ -307,6 +310,7 @@ def populate_rost(from_week, to_week, seed, ukevakt, staff):
                 shift.clear()
                 partner = find_share_partner(who, staff_avail, staff_shifts, staff)
             rost[week]["who"].append(partner)
+            rost[week]["email"].append(staff[partner]["email"])
             staff_avail.remove(partner)
             shift.append(partner)
 
