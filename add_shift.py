@@ -20,8 +20,13 @@ emails = None
 
 
 def add_shifts_from_file(roster, cal, institution, year):
-
-    print(f"TODO: adding from file {roster}")
+    """
+    Reads shifts from roster file and adds them to Google calendar.
+    :param roster: str (path) to roster file generated with make_roster.py
+    :param cal: obj - google calendar service object (RTCalendar / MyCalendar)
+    :param institution: str (UiT, UiO, UiB,...)
+    :param year: str
+    """
     title, header, table = read_roster_csv(roster)
     if title:
         institution = title.split()[0]
@@ -40,6 +45,14 @@ def add_shifts_from_file(roster, cal, institution, year):
 
 
 def verify_calendar_push(title, header, table, cal):
+    """
+    Prints out current roster and forces user to verify before committing to pushing to Google calendar.
+    :param title: str
+    :param header: list
+    :param table: nested list
+    :param cal: obj - google calendar service object (RTCalendar / MyCalendar)
+    :return: bool
+    """
     print("\n\n")
     print(cf.blue(title))
     header = map(cf.blue, header)
@@ -96,10 +109,6 @@ def main(week, names, file_roster, emails, cal, year, institution, ukevakt):
     rt_cal = RTCalendar(calendar_id=rt.avail_cal[cal], scopes=rt.scopes, credentialsfile=rt.secret_file, token=rt.token)
     if cal != rt.rt_cal:
         rt_cal.change_calendar(calendar_name=cal)
-
-    #### TODO remove calendar change below (only for testing purposes)
-    rt_cal.change_calendar(calendar_name="gvi022@metacenter.no")
-    ####
 
     if file_roster:
         add_shifts_from_file(file_roster, rt_cal, institution, year)

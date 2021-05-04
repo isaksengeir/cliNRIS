@@ -1,6 +1,6 @@
 import colorful as cf
 import csv
-import sys
+
 
 # Static methods
 cf.update_palette({"blue": "#2e54ff", "green": "#08a91e", "orange": "#ff5733"})

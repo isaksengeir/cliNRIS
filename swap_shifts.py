@@ -36,5 +36,4 @@ def main(cal, event_id1, event_id2):
 
 
 if __name__ == '__main__':
-
     main()

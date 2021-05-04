@@ -1,3 +1,16 @@
+#!venv/bin/python3
+
+"""Gcal_API.py: Classes to communicate with Google calendar services."""
+
+__author__ = "Geir Villy Isaksen"
+__copyright__ = "Copyright 2021, Geir Villy Isaksen, UiT The Arctic University of Norway"
+__credits__ = []
+__license__ = "GPL"
+__version__ = "1.0.0"
+__maintainer__ = "Geir Villy Isaksen"
+__email__ = "geir.isaksen@uit.no"
+__status__ = "Production"
+
 from datetime import datetime, timedelta, date
 import os.path
 from tabulate import tabulate
@@ -13,6 +26,9 @@ cf.update_palette({"blue": "#2e54ff", "green": "#08a91e", "orange": "#ff5733"})
 
 
 class GoogleCalendarService:
+    """
+    Creates service to communicate with Google calendar using credentials.
+    """
     def __init__(self, scopes=None, credentialsfile='client_secret.json',
                  token=None):
         """
@@ -32,8 +48,7 @@ class GoogleCalendarService:
 
     def verify_args(self):
         """
-        Control scopes, credentialfile and toke.
-        :return:
+        Control scopes, credentialfile and token.
         """
         if not self.scopes:
             raise SystemExit("ABORTING: Google API scopes not defined.\n"
@@ -50,7 +65,7 @@ class GoogleCalendarService:
 
     def validate_token(self):
         """
-        :return:
+        :return: credentials
         """
         credentials = None
         if self.token and os.path.exists(self.token):
@@ -72,7 +87,7 @@ class GoogleCalendarService:
     def start_calender_service(self, api="calendar", version="v3"):
         """
         Starts the google calendar service.
-        :return: calendar (service)
+        :return: calendar (service) object
         """
         return build(api, version, credentials=self.credentials)
 
@@ -107,6 +122,9 @@ class GoogleCalendarService:
 
 
 class MyCalendar(GoogleCalendarService):
+    """
+    Subclass of GoogleCalendarService whith focus on one selected calender from the available ones.
+    """
     def __init__(self, calendar_id, scopes, credentialsfile, token="token.json"):
         super(MyCalendar, self).__init__(scopes=scopes, credentialsfile=credentialsfile, token=token)
 
@@ -271,6 +289,9 @@ class MyCalendar(GoogleCalendarService):
 
 
 class RTCalendar(MyCalendar):
+    """
+    Custom calendar class (MyCalendar) for Metacenter RT support events and rosters.
+    """
     def __init__(self, calendar_id=None, scopes=None, credentialsfile='client_secret.json', token="token.json"):
         if not scopes:
             scopes = ['https://www.googleapis.com/auth/calendar']
@@ -447,6 +468,7 @@ class RTCalendar(MyCalendar):
 
         print(cf.red("\nSwap completed:"))
         self.print_rt_events(events=[event1, event2])
+
 
 class CalendarEvent:
     def __init__(self):
