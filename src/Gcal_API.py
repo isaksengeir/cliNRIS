@@ -303,11 +303,9 @@ class RTCalendar(MyCalendar):
     def get_print_weeks(self, week1, year1, week2, year2):
         if not week2:
             week2 = week1
-        print(year1)
-        print(week1)
         day1 = week_to_date(year=year1, week=week1)[0]
         day2 = week_to_date(year=year2, week=week2)[0]
-        print(cf.blue(f"* Events in weeks {week1}({year1}) - {week2}({year2}) in {self.cal_name} *"))
+        print(cf.blue(f"* Events in weeks {week1} ({year1}) - {week2} ({year2}) in {self.cal_name} *"))
         self.print_rt_events(self.get_events(from_date=day1, to_date=day2))
 
     def print_rt_events(self, events):

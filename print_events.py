@@ -46,8 +46,6 @@ def main(when, cal, week1, year1, week2, year2):
         rt_cal.change_calendar(calendar_name=cal)
 
     if week1 != datetime.now().isocalendar()[1] or week2:
-        print(week1)
-        print(year1)
         rt_cal.get_print_weeks(week1=week1, year1=year1, week2=week2, year2=year2)
     else:
         rt_cal.get_print_events(when=when)

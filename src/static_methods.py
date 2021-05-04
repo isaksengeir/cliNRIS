@@ -64,8 +64,6 @@ def week_to_date(year, week):
     :param week: int
     :return: first date, last date of week (year-month-day)
     """
-    print(year)
-    print(week)
     firstdayofweek = datetime.strptime(f'{year}-W{int(week)}-1', "%Y-W%W-%w").date()
     lastdayofweek = firstdayofweek + timedelta(days=6.9)
     return firstdayofweek, lastdayofweek
