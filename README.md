@@ -12,7 +12,7 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
   <li><code>respond_event.py</code> for responding to an event invitation, or changing the respons status.</li>
   <li><code>event_reminder.py</code> to send email notification to attendee(s) in an event.</li>  
   <li><code>delete_event.py</code> to remove/delete an existing event.</li>
-  <li><code>print_events.py</code> to print out calendar events a given time ahead.</li>    
+  <li><code>print_events.py</code> to print out calendar events for a given week or time ahead.</li>    
 </ul>
 
 <strong> Using the calendar CLI's</strong>
