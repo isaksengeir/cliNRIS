@@ -1,5 +1,6 @@
 import colorful as cf
 import csv
+from datetime import datetime, timedelta
 
 
 # Static methods
@@ -55,5 +56,18 @@ def read_roster_csv(filepath):
 
     return title, header, table
 
+
+def week_to_date(year, week):
+    """
+    converts week number for a given year to date (year-month-day)
+    :param year: int
+    :param week: int
+    :return: first date, last date of week (year-month-day)
+    """
+    print(year)
+    print(week)
+    firstdayofweek = datetime.strptime(f'{year}-W{int(week)}-1', "%Y-W%W-%w").date()
+    lastdayofweek = firstdayofweek + timedelta(days=6.9)
+    return firstdayofweek, lastdayofweek
 
 

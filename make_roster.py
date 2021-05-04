@@ -6,6 +6,7 @@ staff members settings can be adjusted as needed (frequency, shared shifts, ukev
 
 import random
 import datetime
+from src.static_methods import week_to_date
 from distutils.util import strtobool
 from tabulate import tabulate
 import colorful as cf
@@ -54,18 +55,6 @@ def default_rost_settings():
     :return: dict
     """
     return {"e-mail": None, "frequency": 1.0, "ukevakt": True, "shared": False}
-
-
-def week_to_date(year, week):
-    """
-    converts week number for a given year to date (year-month-day)
-    :param year: int
-    :param week: int
-    :return: first date, last date of week (year-month-day)
-    """
-    firstdayofweek = datetime.datetime.strptime(f'{year}-W{int(week)}-1', "%Y-W%W-%w").date()
-    lastdayofweek = firstdayofweek + datetime.timedelta(days=6.9)
-    return firstdayofweek, lastdayofweek
 
 
 def find_next_shift(names_order, rost, staff, ukevakt=False):
@@ -231,6 +220,7 @@ def rost_stats(rost):
             shifts[who]["shifts total"] += 1
             if rost[w]["ukevakt"]:
                 shifts[who]["ukevakt"] += 1
+
     return shifts
 
 

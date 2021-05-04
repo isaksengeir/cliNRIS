@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, date
 import os.path
 from tabulate import tabulate
 import colorful as cf
-from src.static_methods import cal_status_color
+from src.static_methods import cal_status_color, week_to_date
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request
@@ -205,21 +205,10 @@ class MyCalendar(GoogleCalendarService):
         """
         return self.calendar.events().get(calendarId=self.id, eventId=event_id).execute()
 
-    def events_today(self):
-        today = str(datetime.now().date())
-        return self.get_events(today, today)
-
-    def events_week(self):
+    def events_ahead(self, weeks=None):
         today = datetime.now().date()
-        return self.get_events(str(today), str(today + timedelta(days=7)))
-
-    def events_month(self):
-        today = datetime.now().date()
-        return self.get_events(str(today), str(today + timedelta(weeks=4)))
-
-    def events_year(self):
-        today = datetime.now().date()
-        return self.get_events(str(today), str(today + timedelta(weeks=52)))
+        weeks_ahead = {"today": 0, "week": 1, "month": 4, "year": 52}
+        return self.get_events(str(today), str(today + timedelta(weeks=weeks_ahead[weeks])))
 
     def set_maxresults(self, n=100):
         """
@@ -308,19 +297,18 @@ class RTCalendar(MyCalendar):
         self.print_rt_events(events)
 
     def get_print_events(self, when="today"):
-        cal = None
-        for c in self.calendar_ids.keys():
-            if self.calendar_ids[c] == self.id:
-                cal = c
+        print(cf.blue(f"* Events {when} in {self.cal_name} *"))
+        self.print_rt_events(self.events_ahead(weeks=when))
 
-        time_func = {"today": self.events_today(),
-                     "week": self.events_week(),
-                     "month": self.events_month(),
-                     "year": self.events_year()
-                     }
-
-        print(cf.blue(f"* Events {when} in {cal} *"))
-        self.print_rt_events(time_func[when])
+    def get_print_weeks(self, week1, year1, week2, year2):
+        if not week2:
+            week2 = week1
+        print(year1)
+        print(week1)
+        day1 = week_to_date(year=year1, week=week1)[0]
+        day2 = week_to_date(year=year2, week=week2)[0]
+        print(cf.blue(f"* Events in weeks {week1}({year1}) - {week2}({year2}) in {self.cal_name} *"))
+        self.print_rt_events(self.get_events(from_date=day1, to_date=day2))
 
     def print_rt_events(self, events):
         """
@@ -415,10 +403,6 @@ class RTCalendar(MyCalendar):
             'attendees': attendees,
             'reminders': {
                 'useDefault': 'useDefault',
-                #'overrides': [
-                #    {'method': 'email', 'minutes': 24 * 60},
-                #    {'method': 'popup', 'minutes': 10},
-                #],
             },
             "colorId": 8,
             "anyoneCanAddSelf": True,
@@ -469,7 +453,3 @@ class RTCalendar(MyCalendar):
         print(cf.red("\nSwap completed:"))
         self.print_rt_events(events=[event1, event2])
 
-
-class CalendarEvent:
-    def __init__(self):
-        pass
