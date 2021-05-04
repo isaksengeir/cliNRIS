@@ -262,7 +262,10 @@ class MyCalendar(GoogleCalendarService):
              ],
         }
         self.update_event(body=event, event_id=event_id)
-        print(f"Email reminder sent to {', '.join(event['attendees']['email'])}.")
+        emails = list()
+        for who in event["attendees"]:
+            emails.append(who["email"])
+        print(f"Email reminder sent to {', '.join(emails)}.")
 
     def update_event(self, body, event_id):
         event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=body,
