@@ -17,7 +17,7 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
 
 <strong> Using the calendar CLI's</strong>
 
-In order to use the calendar CLI's, you need to be added to the existing RT rost UiT API workspace by sending a request to geir.isaksen@metacenter.no. Creation of a new Google Cloud Platform (GCP) project and enabling the workspace API is explained in more detail here <a href=https://developers.google.com/workspace/guides/create-project> here</a>. Note that the metacenter.no organization only has a limited number of allowed workspaces, so please consult before and if creating a new workspace. 
+In order to use the calendar CLI's, you need to be added to the existing RT rost UiT API workspace by sending a request to geir.isaksen@metacenter.no. Creation of a new Google Cloud Platform (GCP) project and enabling the workspace API is explained in more detail <a href=https://developers.google.com/workspace/guides/create-project> here</a>. Note that the metacenter.no organization only has a limited number of allowed workspaces, so please consult before and if creating a new workspace. 
 
 
 Once you have access to the RT roster management API workspace, you need to download the OAuth client ID credentials called "rt_uit_rost" (under APIs & Services/Credentials) and save this in your local RT_support directory as client_secret.json.
