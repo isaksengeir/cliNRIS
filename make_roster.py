@@ -51,16 +51,16 @@ def read_staff_list(staff):
 
 def default_rost_settings():
     """
-    Default staff rost settings, which can be overwritten by entries in staff.csv
+    Default staff roster settings, which can be overwritten by entries in staff.csv
     :return: dict
     """
-    return {"e-mail": None, "frequency": 1.0, "ukevakt": True, "shared": False}
+    return {"email": None, "frequency": 1.0, "ukevakt": True, "shared": False}
 
 
 def find_next_shift(names_order, rost, staff, ukevakt=False):
     """
     :param names_order: The order of names from random seed
-    :param rost: current rost
+    :param rost: current roster
     :param staff: dict with staff members
     :param ukevakt: bool
     :return:
