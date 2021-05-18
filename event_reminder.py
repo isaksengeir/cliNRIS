@@ -15,7 +15,7 @@ attendee = rt.attendee
     default=cal, help=f"Calendar (default: {cal})"
 )
 @click.option(
-    "-id", "--event_id", type=str, default=event_id, help="ID of event to remove from calendar."
+    "-id", "--event_id", type=str, default=event_id, help="ID of event to send attendee reminder(s) to."
 )
 
 
