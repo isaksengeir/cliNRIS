@@ -1,7 +1,7 @@
-#!venv/bin/python3
+###!venv/bin/python3
 """
-Tool to print RT support rost from a staff list (.csv) where individual
-staff members settings can be adjusted as needed (frequency, shared shifts, ukevakt).
+Tool to generate RT support roster from a staff list (.csv) where individual
+staff members settings can be adjusted as needed (frequency, shared shifts, ukevakt etc.).
 """
 
 import random
@@ -15,6 +15,10 @@ import sys
 import re
 import os.path
 import csv
+
+cf.update_palette({"blue": "#2e54ff"})
+cf.update_palette({"green": "#08a91e"})
+cf.update_palette({"orange": "#ff5733"})
 
 
 def read_staff_list(staff):
@@ -79,7 +83,7 @@ def find_next_shift(names_order, rost, staff, ukevakt=False):
 
 def current_frequency(who, staff_shifts):
     """
-
+    Calculates the frequency of shifts in roster for staff member 'who'.
     :param who: Name
     :param staff_shifts: list with shifts, where each shift is a list of names for that shift
     :return: Occurence of who in shifts (fraction of 1)
@@ -96,7 +100,7 @@ def current_frequency(who, staff_shifts):
 
 def staff_sharing(who, staff_shifts, staff):
     """
-    :param who: name of whom is searching a partner to share shift with
+    Find staff members that share shifts in roster.
     :param staff: complete staff dict
     :return: list with names that can share shift, if frequency not over the limit
     """
@@ -152,10 +156,6 @@ def print_rost(rost, year, csv=False):
     :param year: int
     :return: headers, table (lists)
     """
-    cf.update_palette({"blue": "#2e54ff"})
-    cf.update_palette({"green": "#08a91e"})
-    cf.update_palette({"orange": "#ff5733"})
-
     table = list()
     header = ["Week", "From", "To", "Who", "Ukevakt", "email"]
     if csv:
@@ -194,7 +194,6 @@ def write_roster_csv(filename, title, header, table):
     :param header: list ["title1", "title2",...]
     :param table: nested list [[title 1 stuff], [title 2 stuff],...]
     """
-
     with open(filename, "w", newline='', encoding='utf-8-sig') as csvfile:
         writer = csv.writer(csvfile)
         csvfile.write(f"{title}\n")
@@ -225,6 +224,12 @@ def rost_stats(rost):
 
 
 def print_stats(rost, shift_rounds):
+    """
+    Prints out statistics (load, frequency etc) for staff members in current roster.
+    :param rost: dict with roster {week_nr: {"who":"name", "ukevakt": bool}}
+    :param shift_rounds: nested list with staff per shift iteration in roster
+    :return:
+    """
 
     shift_stats = rost_stats(rost)
     header = ["Name", "Shifts total", "Ukevakt", "Frequency", "Shifts load", "Load (%)"]
@@ -243,12 +248,12 @@ def print_stats(rost, shift_rounds):
 
 def populate_rost(from_week, to_week, seed, ukevakt, staff):
     """
-    :param from_week:
-    :param to_week:
-    :param year:
-    :param ukevakt:
-    :param staff:
-    :return:
+    :param from_week: int
+    :param to_week: int
+    :param year: int
+    :param ukevakt: list (week numbers with ukevakt)
+    :param staff: dict (staff members and settings)
+    :return: dict (roster) and int (iterations in roster)
     """
     rost = dict()
 

@@ -1,4 +1,4 @@
-#!venv/bin/python3
+###!venv/bin/python3
 
 import rt_settings as rt
 import click
@@ -6,6 +6,7 @@ from src.Gcal_API import RTCalendar
 
 cal = rt.default_cal
 event_id = None
+
 
 @click.command()
 @click.option(

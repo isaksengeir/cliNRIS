@@ -1,4 +1,4 @@
-#!venv/bin/python3
+###!venv/bin/python3
 
 import rt_settings as rt
 from src.static_methods import read_roster_csv, colorize_table
