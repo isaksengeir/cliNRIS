@@ -57,7 +57,7 @@ class Staff:
 
 class Ticket:
     def __init__(self, tsv_row=None):
-        self.translate = {"løst": "solved", "åpen": "open", "avvist": "rejected", "stoppet": "stopped", "ny": "new"}
+        self.translate = {"løst": "solved", "åpen": "open", "avvist": "rejected", "stoppet opp": "stopped", "ny": "new"}
         self.id = None
         self.title = None
         self.status = None
