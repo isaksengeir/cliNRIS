@@ -381,7 +381,7 @@ class RTCalendar(MyCalendar):
         # Add (ukevakt) to summary if ukevakt
         uv = ""
         if ukevakt:
-            uv = "(ukevakt)"
+            uv = " (ukevakt)"
 
         attendees = list()
         for email in emails:
@@ -392,7 +392,7 @@ class RTCalendar(MyCalendar):
         body = {
             'summary': f'{institution}: {"/".join(names)}{uv}',
             'location': "https://rt.uninett.no & https://slack.com/intl/en-no/",
-            'description': 'https://scm.uninett.no/sigma2/interndokumentasjon/-/tree/master/support',
+            'description': 'https://gitlab.sigma2.no/sigma2/interndokumentasjon/-/tree/master/support',
             'start': {
                 'date': str(date_),
                 'timeZone': 'GMT+02:00',
