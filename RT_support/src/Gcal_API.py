@@ -15,7 +15,7 @@ from datetime import datetime, timedelta, date
 import os.path
 from tabulate import tabulate
 import colorful as cf
-from src.static_methods import cal_status_color, week_to_date
+from .static_methods import cal_status_color, week_to_date
 from googleapiclient.discovery import build
 from google_auth_oauthlib.flow import InstalledAppFlow
 from google.auth.transport.requests import Request

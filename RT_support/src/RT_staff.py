@@ -47,7 +47,7 @@ class Staff:
                 tickets.append(ticket)
                 if "timer" in ticket.created:
                     tickets_new.append(ticket)
-            elif "days" in ticket.last_updated:
+            elif "dager" in ticket.last_updated:
                 if int(ticket.last_updated.split()[0]) <= days:
                     tickets.append(ticket)
                 if int(ticket.created.split()[0]) <= days:

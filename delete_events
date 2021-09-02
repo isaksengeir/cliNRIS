@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+DIRECTORY_THIS_SCRIPT=$( cd "$(dirname "$0")" ; pwd -P )
+
+cd "$DIRECTORY_THIS_SCRIPT/RT_support"
+
+. "$DIRECTORY_THIS_SCRIPT/venv/bin/activate"
+
+export LC_ALL=en_US.utf-8
+export LANG=en_US.utf-8
+
+python delete_events.py $* 
