@@ -2,17 +2,18 @@
 
 <strong>Tools for Metacenter.no RT Support roster and Google calendar management</strong>
 
-Run <code>install.sh</code> for setting up python3 virtual environment with dependencies given in <code>requirements.txt</code>.
+Run <code>RT_support/install.sh</code> for setting up python3 virtual environment with dependencies given in <code>RT_support/requirements.txt</code>.
 
 RT_support contains a small collection of simple command line interfaces (CLI's):
 <ul>
-  <li><code>make_roster.py</code> for automatic generation of a roster from a list of staff (.csv) over a given period of time. This CLI does not require Google services as do the following.</li>
-  <li><code>add_shift.py</code> to add RT support staff to a given week shift, or several from a pre-created roster file.</li>
-  <li><code>swap_shifts.py</code> to swap RT support staff between two existing shifts/events. </li>
-  <li><code>respond_event.py</code> for responding to an event invitation, or changing the respons status.</li>
-  <li><code>event_reminder.py</code> to send email notification to attendee(s) in an event.</li>  
-  <li><code>delete_event.py</code> to remove/delete an existing event.</li>
-  <li><code>print_events.py</code> to print out calendar events for a given week or time ahead.</li>    
+  <li><code>make_roster</code> for automatic generation of a roster from a list of staff (.csv) over a given period of time. This CLI does not require Google services as do the following.</li>
+  <li><code>add_shift</code> to add RT support staff to a given week shift, or several from a pre-created roster file.</li>
+  <li><code>swap_shifts</code> to swap RT support staff between two existing shifts/events. </li>
+  <li><code>respond_event</code> for responding to an event invitation, or changing the respons status.</li>
+  <li><code>event_reminder</code> to send email notification to attendee(s) in an event.</li>  
+  <li><code>delete_event</code> to remove/delete an existing event.</li>
+  <li><code>print_events</code> to print out calendar events for a given week or time ahead.</li>
+  <li><code>rt_stats</code> to print statistics from rt.uninent (.csv)</li> 
 </ul>
 
 <strong> Using the calendar CLI's</strong>
