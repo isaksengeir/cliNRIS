@@ -79,7 +79,8 @@ class GoogleCalendarService:
             else:
                 flow = InstalledAppFlow.from_client_secrets_file(self.credentialsfile, self.scopes)
                 credentials = flow.run_local_server(port=0)
-            with open(self.token, "w") as token:
+
+            with open("token.json", "w") as token:
                 token.write(credentials.to_json())
 
         return credentials
