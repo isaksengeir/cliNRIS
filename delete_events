@@ -2,9 +2,12 @@
 
 DIRECTORY_THIS_SCRIPT=$( cd "$(dirname "$0")" ; pwd -P )
 
-cd "$DIRECTORY_THIS_SCRIPT/RT_support"
+pysrc="$DIRECTORY_THIS_SCRIPT/RT_support"
 
-. "$DIRECTORY_THIS_SCRIPT/venv/bin/activate"
+
+. "$pysrc/venv/bin/activate"
+
+cd $pysrc
 
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
