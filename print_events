@@ -4,8 +4,6 @@ DIRECTORY_THIS_SCRIPT=$( cd "$(dirname "$0")" ; pwd -P )
 
 pysrc="$DIRECTORY_THIS_SCRIPT/RT_support"
 
-echo "$pysrc"
-
 . "$pysrc/venv/bin/activate"
 
 export LC_ALL=en_US.utf-8
