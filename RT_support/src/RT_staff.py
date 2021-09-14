@@ -45,12 +45,12 @@ class Staff:
         for ticket in self.tickets:
             if "timer" in ticket.last_updated:
                 tickets.append(ticket)
-                if "timer" in ticket.created:
+                if "timer" in ticket.taken:
                     tickets_new.append(ticket)
             elif "dager" in ticket.last_updated:
                 if int(ticket.last_updated.split()[0]) <= days:
                     tickets.append(ticket)
-                if int(ticket.created.split()[0]) <= days:
+                if int(ticket.taken.split()[0]) <= days:
                     tickets_new.append(ticket)
         return tickets, tickets_new
 
@@ -65,6 +65,7 @@ class Ticket:
         self.owner = None
         self.user = None
         self.created = None
+        self.taken = None
         self.last_updated = None
 
         if tsv_row:
@@ -79,7 +80,11 @@ class Ticket:
         self.owner = self.tsv_row[4]
         self.user = self.tsv_row[6]
         self.created = self.tsv_row[7]
-        self.last_updated = self.tsv_row[8]
+        self.taken = self.tsv_row[8]
+        self.last_updated = self.tsv_row[9]
+
+        if len(self.taken.split()) < 1:
+            self.taken = self.last_updated
 
 
 class ReadRT:
