@@ -24,12 +24,14 @@ from google.oauth2.credentials import Credentials
 
 cf.update_palette({"blue": "#2e54ff", "green": "#08a91e", "orange": "#ff5733"})
 
+main_dir = os.path.abspath(os.path.dirname(os.path.dirname(__file__)))
+
 
 class GoogleCalendarService:
     """
     Creates service to communicate with Google calendar using credentials.
     """
-    def __init__(self, scopes=None, credentialsfile='client_secret.json',
+    def __init__(self, scopes=None, credentialsfile=f'{main_dir}/client_secret.json',
                  token=None):
         """
         :param scopes: Permissions (https://developers.google.com/identity/protocols/oauth2/scopes#calendar)
@@ -57,9 +59,9 @@ class GoogleCalendarService:
             raise SystemExit("ABORTING: No credential file with secret keys defined.\n"
                              "see https://developers.google.com/identity/protocols/oauth2")
         if not self.token:
-            if os.path.isfile("token.json"):
-                self.token = "token.json"
-                print(f"Found {self.token} (delete if you can't connect.)")
+            if os.path.isfile(f"{main_dir}/token.json"):
+                self.token = f"{main_dir}/token.json"
+                print(f"Found {self.token} (delete it if you can't connect.)")
             else:
                 print(f"No Token file specified. Creating {self.token} from credentials.")
 
@@ -80,7 +82,7 @@ class GoogleCalendarService:
                 flow = InstalledAppFlow.from_client_secrets_file(self.credentialsfile, self.scopes)
                 credentials = flow.run_local_server(port=0)
 
-            with open("token.json", "w") as token:
+            with open(f"{main_dir}/token.json", "w") as token:
                 token.write(credentials.to_json())
 
         return credentials
@@ -126,7 +128,8 @@ class MyCalendar(GoogleCalendarService):
     """
     Subclass of GoogleCalendarService whith focus on one selected calender from the available ones.
     """
-    def __init__(self, calendar_id, scopes, credentialsfile, token="token.json"):
+    def __init__(self, calendar_id, scopes, credentialsfile=f'{main_dir}/client_secret.json',
+                 token=f"{main_dir}/token.json"):
         super(MyCalendar, self).__init__(scopes=scopes, credentialsfile=credentialsfile, token=token)
 
         self.id = calendar_id

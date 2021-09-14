@@ -8,9 +8,7 @@ echo "$pysrc"
 
 . "$pysrc/venv/bin/activate"
 
-cd "$pysrc"
-
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
-python print_events.py $* 
+python "$pysrc"/print_events.py $*
