@@ -37,6 +37,9 @@ def add_shifts_from_file(roster, cal, institution, year):
             shift = list(table[i])
             week = shift[0]
             names = shift[3].split("/")
+            ukevakt = False
+            if "X" in shift[4]:
+                ukevakt=True
             emails = shift[5].split("/")
 
             cal.add_shift(week=week, names=names, emails=emails, institution=institution, ukevakt=ukevakt, year=year)
