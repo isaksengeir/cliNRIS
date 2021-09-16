@@ -239,10 +239,60 @@ class MyCalendar(GoogleCalendarService):
             print(f"Could not find attendee {attendee} in event ID {event_id}")
             return
 
-        event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=event,
-                                                      sendUpdates="all").execute()
-        print(f"\nEvent {event_id} updated {event_updated['updated']}")
+        self.update_event(body=event, event_id=event_id)
         print(cf.blue(f"{attendee} status set to: {response}\n"))
+
+    def add_attendee(self, event_id, attendee):
+        """
+        Add attendee to an existing event. Attendee is email address.
+        """
+        if "@" not in attendee:
+            print(f"{attendee} does not seem to be a valid email address.")
+            return
+
+        event = self.get_event(event_id)
+        event["attendees"].append({"email": attendee})
+
+        self.update_event(body=event, event_id=event_id)
+
+    def remove_attendee(self, event_id, attendee):
+        """
+        Deletes/removes attendee from event
+        """
+        event = self.get_event(event_id)
+        for i in range(len(event["attendees"])):
+            if event["attendees"][i]["email"] == attendee:
+                del event["attendees"][i]
+        self.update_event(body=event, event_id=event_id)
+
+    def replace_attendee(self, event_id, attendee_old, attendee_new):
+        """
+        replace existing attendee with new attendee
+        """
+        event = self.get_event(event_id)
+        found_attendee = False
+        for i in range(len(event["attendees"])):
+            if event["attendees"][i]["email"] == attendee_old:
+                event["attendees"][i]["email"] = attendee_new
+                found_attendee = True
+        if not found_attendee:
+            print(f"Could not find attendee {attendee_old} in event ID {event_id}")
+            return
+
+        self.update_event(body=event, event_id=event_id)
+
+    def add_to_summary(self, event_id, new_text=""):
+        event = self.get_event(event_id)
+        event["summary"] += new_text
+        self.update_event(body=event, event_id=event_id)
+
+    def replace_summary(self, event_id, new_text=""):
+        event = self.get_event(event_id)
+        event["summary"] = new_text
+        self.update_event(body=event, event_id=event_id)
+
+    def delete_summary(self, event_id):
+        self.replace_summary(event_id=event_id, new_text="")
 
     def remind_event(self, event_id):
         """
@@ -274,7 +324,8 @@ class MyCalendar(GoogleCalendarService):
     def update_event(self, body, event_id):
         event_updated = self.calendar.events().update(calendarId=self.id, eventId=event_id, body=body,
                                                       sendUpdates="all").execute()
-        print(event_updated["updated"])
+
+        print(f"\nEvent {event_id} updated {event_updated['updated']}")
 
     def delete_event(self, event_id):
         resp = self.calendar.events().delete(calendarId=self.id, eventId=event_id, sendUpdates="all").execute()

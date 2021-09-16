@@ -43,9 +43,9 @@ class Staff:
         tickets = list()
         tickets_new = list()
         for ticket in self.tickets:
-            if "timer" in ticket.last_updated:
+            if "timer" in ticket.last_updated or "minutt" in ticket.last_updated:
                 tickets.append(ticket)
-                if "timer" in ticket.taken:
+                if "timer" in ticket.taken or "minutt" in ticket.taken:
                     tickets_new.append(ticket)
             elif "dager" in ticket.last_updated:
                 if int(ticket.last_updated.split()[0]) <= days:

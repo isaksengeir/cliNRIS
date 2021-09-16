@@ -33,7 +33,6 @@ when = "today"
 @click.option(
     "-y2", "--year2", type=int, default=year2, help=f"Year for week2 (default: {year2})."
 )
-
 def main(when, cal, week1, year1, week2, year2):
     """
     CLI to print Google calendar events.
