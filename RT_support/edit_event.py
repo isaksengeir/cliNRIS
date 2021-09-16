@@ -35,12 +35,7 @@ sentence = None
 @click.option(
     "-id", "--event_id", type=str, default=event_id, help="ID of event to edit in calendar."
 )
-@click.option(
-    # This is just for debugging ...
-    "--sentence", default=sentence
-)
-
-def main(do_what, event_id, do_where, new_value, replace, cal, sentence):
+def main(do_what, event_id, do_where, new_value, replace, cal):
     """
     Simple CLI to edit/add/delete something in existing event with event ID.
 

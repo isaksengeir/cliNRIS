@@ -9,5 +9,4 @@ pysrc="$DIRECTORY_THIS_SCRIPT/RT_support"
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
-echo "$@"
-python "$pysrc"/edit_event.py $*
+python "$pysrc"/edit_event.py "$@"
