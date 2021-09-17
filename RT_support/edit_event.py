@@ -46,7 +46,6 @@ def main(do_what, event_id, do_where, new_value, replace, cal):
         print(sentence)
         return
 
-
     if not event_id:
         print("No event ID given. Aborting.")
         return

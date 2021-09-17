@@ -10,4 +10,4 @@ pysrc="$DIRECTORY_THIS_SCRIPT/RT_support"
 export LC_ALL=en_US.utf-8
 export LANG=en_US.utf-8
 
-python "$pysrc"/rt_stats.py $*
+python "$pysrc"/rt_stats.py "$@"

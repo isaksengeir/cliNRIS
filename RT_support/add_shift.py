@@ -83,7 +83,7 @@ def verify_calendar_push(title, header, table, cal):
     help=f"Responsible institution for staff (default: {institution})."
 )
 @click.option(
-    "-n", "--names", type=str, multiple=True, default=names, help=f"Name for weekly shift. No spaces allowed. Multiple. "
+    "-n", "--names", type=str, multiple=True, default=names, help=f"Name for weekly shift. Multiple."
 )
 @click.option(
     "-e", "--emails", type=str, multiple=True, default=names, help=f"Email to attendee in weekly shift. Multiple."
