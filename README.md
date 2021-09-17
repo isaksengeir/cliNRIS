@@ -13,6 +13,7 @@ RT_support contains a small collection of simple command line interfaces (CLI's)
   <li><code>event_reminder</code> to send email notification to attendee(s) in an event.</li>  
   <li><code>delete_event</code> to remove/delete an existing event.</li>
   <li><code>print_events</code> to print out calendar events for a given week or time ahead.</li>
+  <li><code>edit_events</code> to edit existing events (attendees/summary).</li>
   <li><code>rt_stats</code> to print statistics from rt.uninent (.csv)</li> 
 </ul>
 
