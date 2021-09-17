@@ -7,7 +7,10 @@ Run <code>RT_support/install.sh</code> for setting up python3 virtual environmen
 RT_support contains a small collection of simple command line interfaces (CLI's):
 <ul>
   <li><code>make_roster</code> for automatic generation of a roster from a list of staff (.csv) over a given period of time. </li>
-  <li><code>rt_stats</code> to print statistics from rt.uninent (.csv). These CLIs do not require Google services as do the following.</li> 
+  <li><code>rt_stats</code> to print statistics from rt.uninent (.csv).</li>
+</ul>
+The following CLIs do require Google services:
+<ul>
   <li><code>add_shift</code> to add RT support staff to a given week shift, or several from a pre-created roster file.</li>
   <li><code>swap_shifts</code> to swap RT support staff between two existing shifts/events. </li>
   <li><code>respond_event</code> for responding to an event invitation, or changing the respons status.</li>
