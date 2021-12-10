@@ -1,4 +1,4 @@
-# RT_support
+# cliNRIS 
 
 <strong>Tools for NRIS (RT - soon Service Desk @ gitlab) Support roster and Google calendar management</strong>
 
