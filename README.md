@@ -1,6 +1,6 @@
 # RT_support
 
-<strong>Tools for Metacenter.no RT Support roster and Google calendar management</strong>
+<strong>Tools for NRIS (RT - soon Service Desk @ gitlab) Support roster and Google calendar management</strong>
 
 Run <code>RT_support/install.sh</code> for setting up python3 virtual environment with dependencies given in <code>RT_support/requirements.txt</code>.
 
