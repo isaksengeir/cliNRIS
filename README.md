@@ -1,4 +1,4 @@
-# cliNRIS 
+# cliNRIS <img src="/images/CLI.png" height="128" align="right" />
 
 <strong>Tools for NRIS (RT - soon Service Desk @ gitlab) Support roster and Google calendar management</strong>
 
